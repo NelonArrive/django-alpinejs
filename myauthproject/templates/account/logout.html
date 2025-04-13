@@ -8,7 +8,7 @@
     <h2>Выход из аккаунта</h2>
     <p>Вы уверены, что хотите выйти?</p>
 
-    <form method="post" action="{% url 'account_logout' %}">
+    <form class='form-logout' method="post" action="{% url 'account_logout' %}">
         {% csrf_token %}
         <button type="submit">Выйти</button>
         <a href="{% url 'account_email' %}" class="btn-cancel">Отмена</a>

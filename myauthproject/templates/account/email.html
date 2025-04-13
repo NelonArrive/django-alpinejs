@@ -1,0 +1,66 @@
+<!-- prettier-ignore -->
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}📧 Управление Email{% endblock %}
+
+{% block content %}
+<div class="form-container">
+	<h2>📬 Email адреса</h2>
+
+	{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+		<li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+			{{ message }}
+		</li>
+		{% endfor %}
+	</ul>
+	{% endif %} {% if user.emailaddress_set.all %}
+	<p>📨 Следующие email адреса привязаны к вашему аккаунту:</p>
+	<ul>
+		{% for emailaddress in user.emailaddress_set.all %}
+		<li style="margin-bottom: 1rem">
+			<strong>{{ emailaddress.email }}</strong>
+			{% if emailaddress.verified %} ✅ Подтверждён {% else %} ❌ Не подтверждён
+			{% endif %} {% if emailaddress.primary %} 🌟 Основной {% else %}
+			<form
+				method="post"
+				action="{% url 'account_email' %}"
+				style="display: inline"
+			>
+				{% csrf_token %}
+				<input type="hidden" name="email" value="{{ emailaddress.email }}" />
+				<button class="btn-primary" name="action_primary" type="submit">
+					Сделать основным
+				</button>
+				<button class="btn-primary" name="action_send" type="submit">
+					Отправить подтверждение
+				</button>
+				<button class="btn-cancel" name="action_remove" type="submit">
+					Удалить
+				</button>
+			</form>
+			{% endif %}
+		</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+	<p>⚠️ Нет привязанных email адресов.</p>
+	{% endif %}
+
+	<hr style="margin: 2rem 0" />
+
+	<h3>➕ Добавить email адрес</h3>
+	<form method="post" action="{% url 'account_email' %}">
+		{% csrf_token %}
+		<div class="form-group">
+			<label for="id_email">📧 Email:</label>
+			<input type="email" name="email" id="id_email" required />
+		</div>
+		<button class="btn-primary" name="action_add" type="submit">
+			Добавить Email
+		</button>
+	</form>
+</div>
+{% endblock %}

@@ -1,14 +1,46 @@
+<!-- prettier-ignore -->
 {% extends "base.html" %}
 {% load socialaccount %}
+{% load static %}
 
-{% block title %}Login{% endblock %}
+{% block title %}🔐 Вход{% endblock %}
 
 {% block content %}
-<form method="post" action="{% url 'account_login' %}">
-    {% csrf_token %}
-    <h2>Login</h2>
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-    <p>Don't have an account? <a href="{% url 'account_signup' %}">Sign up</a></p>
-</form>
+<div class="form-container">
+	<h2>🔐 Вход в аккаунт</h2>
+	<form method="post" action="{% url 'account_login' %}">
+		{% csrf_token %} {{ form.as_p }}
+		<button class="btn-primary" type="submit">Войти</button>
+		<p style="margin-top: 1rem">
+			Нет аккаунта? <a href="{% url 'account_signup' %}">Регистрация</a>
+		</p>
+	</form>
+
+	<hr style="margin: 2rem 0" />
+
+	<h3>🌐 Войти через соцсети</h3>
+	<div
+		class="social-logins"
+		style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem"
+	>
+		<a
+			href="{% provider_login_url 'google' %}"
+			class="btn-primary"
+			style="background-color: #db4437"
+			>🔴 Войти через Google</a
+		>
+		<a
+			href="{% provider_login_url 'yandex' %}"
+			class="btn-primary"
+			style="background-color: #ffcc00; color: #000"
+			>🟡 Войти через Яндекс</a
+		>
+		<a
+			href="{% provider_login_url 'github' %}"
+			class="btn-primary"
+			style="background-color: #333"
+			>⚫ Войти через GitHub</a
+		>
+	</div>
+</div>
 {% endblock %}

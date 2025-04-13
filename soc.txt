@@ -1,0 +1,11 @@
+GitHub:
+Secret-key: 9de0af6bf1bcdb9b9e17e54920f5d7c1a93436a9
+Client ID: Ov23lihRI7oQCupNtMfR
+======================================================
+Yandex:
+Secret-key: b0317914f0374646bec60ce89ae38ce9
+Client ID: 8b1b3ac0e2914661a096a353ee97716c
+======================================================
+Google:
+Secret-key: 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
+Client ID: 804399489417-gvt96jfrcq59i4j8m7q6iugrnf51lfrq.apps.googleusercontent.com

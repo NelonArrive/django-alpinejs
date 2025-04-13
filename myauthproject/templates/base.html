@@ -1,6 +1,11 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ru">
+<html
+	lang="ru"
+	x-data="{ dark: localStorage.getItem('theme') === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches }"
+	x-init="$watch('dark', val => localStorage.setItem('theme', val ? 'dark' : 'light'))"
+	:class="{ 'dark': dark }"
+>
 	<head>
 		<meta charset="UTF-8" />
 		<title>{% block title %}MyAuthProject{% endblock %}</title>
@@ -9,7 +14,10 @@
 			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap"
 			rel="stylesheet"
 		/>
-		<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+			defer
+		></script>
 	</head>
 	<body>
 		<header class="navbar">
@@ -32,6 +40,14 @@
 						<li><a href="{% url 'account_signup' %}">Регистрация</a></li>
 						{% endif %}
 					</ul>
+					<button
+						@click="dark = !dark"
+						class="theme-toggle-btn"
+						:aria-label="dark ? 'Light mode' : 'Dark mode'"
+					>
+						<span x-show="!dark">🌙</span>
+						<span x-show="dark">☀️</span>
+					</button>
 				</nav>
 
 				<!-- Mobile Burger -->

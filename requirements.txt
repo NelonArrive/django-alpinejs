@@ -1,2 +1,6 @@
 Django
 django-allauth
+pyjwt
+cryptography
+requests
+requests-oauthlib
