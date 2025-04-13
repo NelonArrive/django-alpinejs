@@ -1,5 +1,120 @@
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap");
 
+/* Reset and base styles  */
+* {
+	padding: 0px;
+	margin: 0px;
+	border: none;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* Links */
+
+a,
+a:link,
+a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+/* Common */
+
+aside,
+nav,
+footer,
+header,
+section,
+main {
+	display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+ul,
+ul li {
+	list-style: none;
+}
+
+img {
+	vertical-align: top;
+}
+
+img,
+svg {
+	max-width: 100%;
+	height: auto;
+}
+
+address {
+	font-style: normal;
+}
+
+/* Form */
+
+input,
+textarea,
+button,
+select {
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+	background-color: transparent;
+}
+
+input::-ms-clear {
+	display: none;
+}
+
+button,
+input[type="submit"] {
+	display: inline-block;
+	box-shadow: none;
+	background-color: transparent;
+	background: none;
+	cursor: pointer;
+}
+
+input:focus,
+input:active,
+button:focus,
+button:active {
+	outline: none;
+}
+
+button::-moz-focus-inner {
+	padding: 0;
+	border: 0;
+}
+
+label {
+	cursor: pointer;
+}
+
+legend {
+	display: block;
+}
+
+input[type="file"] {
+	max-width: 100%;
+}
+
 /* ========================================
    Base Styles & Typography
 ======================================== */
@@ -45,7 +160,35 @@ form {
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
+.form-login input,
+.form-signup input,
+button {
+	width: 100%;
+	margin-bottom: 1rem;
+}
+
+.form-login input[type="checkbox"] {
+	width: auto;
+}
+
+.form_title-signup {
+	font-size: 38px;
+	font-weight: bold;
+	text-align: center;
+}
+
 .form-logout {
+	background-color: inherit !important;
+	border: inherit !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	border: none !important;
+}
+
+.form-email {
+	border: inherit !important;
+	padding: inherit;
+	margin: inherit;
 }
 
 .container h2,
@@ -65,23 +208,16 @@ form {
 ======================================== */
 input,
 button {
-	font-family: inherit;
-	padding: 0.625rem; /* 10px */
-	margin-top: 0.625rem;
-	width: 100%;
+	/* margin-top: 1rem; */
+	padding: 0.625rem;
 	border-radius: 0.5rem;
 	border: 1px solid var(--light-gray);
-	box-sizing: border-box;
 	transition: border 0.3s ease;
 }
 
 input:focus {
 	outline: none;
 	border-color: var(--primary-color);
-}
-
-.form-group {
-	margin-bottom: 1.2rem;
 }
 
 .form-group label {
@@ -126,18 +262,11 @@ button:hover,
 }
 
 .btn-cancel {
-	margin-top: 0.625rem;
-	padding: 0.625rem;
 	background-color: #ccc;
 	color: #333;
-	text-align: center;
 	border-radius: 0.5rem;
-	display: inline-block;
-	transition: background-color 0.2s ease;
-}
-
-.btn-cancel:hover {
-	background-color: #bbb;
+	border: none;
+	padding: 0.75rem 1.5rem;
 }
 
 /* ========================================
@@ -163,6 +292,13 @@ button:hover,
 	font-size: 1.8rem;
 	font-weight: bold;
 	color: var(--primary-color);
+}
+
+.nav-desktop {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1.5rem;
 }
 
 .nav-menu {
@@ -301,6 +437,6 @@ button:hover,
 	border: none;
 	cursor: pointer;
 	font-size: 1.1rem;
-	margin-left: 1rem;
 	padding: 0.5rem;
+	margin-bottom: 0;
 }

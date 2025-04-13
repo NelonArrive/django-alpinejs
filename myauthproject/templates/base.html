@@ -2,8 +2,21 @@
 <!DOCTYPE html>
 <html
 	lang="ru"
-	x-data="{ dark: localStorage.getItem('theme') === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches }"
-	x-init="$watch('dark', val => localStorage.setItem('theme', val ? 'dark' : 'light'))"
+	x-data="{
+        dark: (localStorage.getItem('theme') === 'dark') || 
+              (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    }"
+	x-init="
+        $watch('dark', val => {
+            localStorage.setItem('theme', val ? 'dark' : 'light');
+            document.documentElement.classList.toggle('dark', val);
+        });
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (!localStorage.getItem('theme')) {
+                dark = e.matches;
+            }
+        });
+    "
 	:class="{ 'dark': dark }"
 >
 	<head>

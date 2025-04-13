@@ -20,28 +20,34 @@
 	<p>📨 Следующие email адреса привязаны к вашему аккаунту:</p>
 	<ul>
 		{% for emailaddress in user.emailaddress_set.all %}
-		<li style="margin-bottom: 1rem">
+		<li style="margin-bottom: 1.5rem">
 			<strong>{{ emailaddress.email }}</strong>
 			{% if emailaddress.verified %} ✅ Подтверждён {% else %} ❌ Не подтверждён
-			{% endif %} {% if emailaddress.primary %} 🌟 Основной {% else %}
+			{% endif %} {% if emailaddress.primary %} 🌟 Основной {% endif %}
+
 			<form
+				class="form-email"
 				method="post"
 				action="{% url 'account_email' %}"
-				style="display: inline"
+				style="margin-top: 0.5rem"
 			>
 				{% csrf_token %}
 				<input type="hidden" name="email" value="{{ emailaddress.email }}" />
+
+				{% if not emailaddress.primary %}
 				<button class="btn-primary" name="action_primary" type="submit">
-					Сделать основным
+					Сделать основным 🌟
 				</button>
+				{% endif %} {% if not emailaddress.verified %}
 				<button class="btn-primary" name="action_send" type="submit">
-					Отправить подтверждение
+					Отправить подтверждение 📩
 				</button>
+				{% endif %}
+
 				<button class="btn-cancel" name="action_remove" type="submit">
-					Удалить
+					Удалить ❌
 				</button>
 			</form>
-			{% endif %}
 		</li>
 		{% endfor %}
 	</ul>

@@ -14,12 +14,12 @@
 	<h1>Добро пожаловать в <strong>MyAuthProject</strong> 🚀</h1>
 	<p>Пожалуйста, войдите или зарегистрируйтесь.</p>
 	<div style="margin-top: 2rem">
-		<button class="btn-outline">
-			<a href="{% url 'account_login' %}" class="btn">Войти</a>
-		</button>
-		<button>
-			<a href="{% url 'account_signup' %}" class="btn-outline">Регистрация</a>
-		</button>
+		<a href="{% url 'account_login' %}" class="btn">
+			<button class="btn-outline">Войти</button>
+		</a>
+		<a href="{% url 'account_signup' %}" class="btn-outline">
+			<button>Регистрация</button>
+		</a>
 	</div>
 	{% endif %}
 </div>

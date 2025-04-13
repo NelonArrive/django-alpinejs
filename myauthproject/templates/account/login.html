@@ -8,15 +8,13 @@
 {% block content %}
 <div class="form-container">
 	<h2>🔐 Вход в аккаунт</h2>
-	<form method="post" action="{% url 'account_login' %}">
+	<form class="form-login" method="post" action="{% url 'account_login' %}">
 		{% csrf_token %} {{ form.as_p }}
 		<button class="btn-primary" type="submit">Войти</button>
 		<p style="margin-top: 1rem">
 			Нет аккаунта? <a href="{% url 'account_signup' %}">Регистрация</a>
 		</p>
 	</form>
-
-	<hr style="margin: 2rem 0" />
 
 	<h3>🌐 Войти через соцсети</h3>
 	<div
@@ -27,8 +25,9 @@
 			href="{% provider_login_url 'google' %}"
 			class="btn-primary"
 			style="background-color: #db4437"
-			>🔴 Войти через Google</a
 		>
+			🔴 Войти через Google
+		</a>
 		<a
 			href="{% provider_login_url 'yandex' %}"
 			class="btn-primary"
