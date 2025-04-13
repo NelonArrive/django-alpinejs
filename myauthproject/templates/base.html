@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<title>{% block title %}MyAuthProject{% endblock %}</title>
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap"
+			rel="stylesheet"
+		/>
+		<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+	</head>
+	<body>
+		<header class="navbar">
+			<div class="navbar-container" x-data="{ open: false }">
+				<div class="logo">
+					<a href="{% url 'home' %}">🚀 MyAuthProject</a>
+				</div>
+
+				<!-- Desktop Menu -->
+				<nav class="nav-desktop">
+					<ul class="nav-menu">
+						{% if user.is_authenticated %}
+						<li>
+							<a href="{% url 'account_change_password' %}">Сменить пароль</a>
+						</li>
+						<li><a href="{% url 'account_email' %}">Email</a></li>
+						<li><a href="{% url 'account_logout' %}">Выйти</a></li>
+						{% else %}
+						<li><a href="{% url 'account_login' %}">Войти</a></li>
+						<li><a href="{% url 'account_signup' %}">Регистрация</a></li>
+						{% endif %}
+					</ul>
+				</nav>
+
+				<!-- Mobile Burger -->
+				<div class="burger" @click="open = !open">
+					<div :class="{'rotate': open}">☰</div>
+				</div>
+
+				<!-- Mobile Dropdown -->
+				<nav
+					class="nav-mobile"
+					x-show="open"
+					@click.away="open = false"
+					x-transition
+				>
+					<ul>
+						{% if user.is_authenticated %}
+						<li>
+							<a href="{% url 'account_change_password' %}">Сменить пароль</a>
+						</li>
+						<li><a href="{% url 'account_email' %}">Email</a></li>
+						<li><a href="{% url 'account_logout' %}">Выйти</a></li>
+						{% else %}
+						<li><a href="{% url 'account_login' %}">Войти</a></li>
+						<li><a href="{% url 'account_signup' %}">Регистрация</a></li>
+						{% endif %}
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+		<main class="main-content">{% block content %}{% endblock %}</main>
+	</body>
+</html>

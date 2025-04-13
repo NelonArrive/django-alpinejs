@@ -1,0 +1,26 @@
+<!-- prettier-ignore -->
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<div class="container" style="text-align: center; margin-top: 5rem">
+	{% if user.is_authenticated %}
+	<h1>Добро пожаловать, {{ user.username }}!</h1>
+	<p>Вы вошли в систему.</p>
+	<a href="{% url 'account_logout' %}" class="btn">Выйти</a>
+	{% else %}
+	<h1>Добро пожаловать в <strong>MyAuthProject</strong> 🚀</h1>
+	<p>Пожалуйста, войдите или зарегистрируйтесь.</p>
+	<div style="margin-top: 2rem">
+		<button class="btn-outline">
+			<a href="{% url 'account_login' %}" class="btn">Войти</a>
+		</button>
+		<button>
+			<a href="{% url 'account_signup' %}" class="btn-outline">Регистрация</a>
+		</button>
+	</div>
+	{% endif %}
+</div>
+{% endblock %}

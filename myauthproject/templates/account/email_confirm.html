@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Подтверждение Email{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Подтверждение Email</h2>
+    {% if confirmation %}
+        <p>Подтверждаете <strong>{{ confirmation.email_address.email }}</strong>?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Подтвердить</button>
+        </form>
+    {% else %}
+        <p>Ссылка на подтверждение недействительна или уже использована.</p>
+    {% endif %}
+</div>
+{% endblock %}

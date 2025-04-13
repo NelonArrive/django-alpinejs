@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Письмо отправлено{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Проверьте свою почту</h2>
+    {% if email %}
+        <p>Мы отправили письмо с подтверждением на <strong>{{ email }}</strong>.</p>
+    {% else %}
+        <p>Мы отправили вам письмо с подтверждением. Пожалуйста, проверьте свою почту.</p>
+    {% endif %}
+    <p>Если письмо не пришло в течение нескольких минут, проверьте папку "Спам" или <a href="{% url 'account_email' %}">повторите отправку</a>.</p>
+
+    <a href="{% url 'account_login' %}" class="btn-cancel">Вернуться к входу</a>
+</div>
+{% endblock %}
